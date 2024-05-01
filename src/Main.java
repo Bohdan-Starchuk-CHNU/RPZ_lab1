@@ -1,54 +1,26 @@
+import refactored.Human;
+import refactored.HumanFactory;
+import refactored.utils.HumanUtil;
 
+import java.util.Scanner;
 
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        humanIMB humanIMB = new humanIMB(80,1.52);
-        System.out.println(humanIMB.Result());
-    }
-}
-class humanIMB {
-    public double W; //Weight Human
-    public double H; // Height Human
-    private static double imb;
-    public humanIMB(double w, double h) {
-        W = w;
-        H = h;
-        imb = W / (H * H);
-    }
-    public double takeW() {
-        return W;
-    }
-    public void putW(double w) {
-        W = w;
-        imb = W / (H * H);
-    }
-    public double takeH() {
-        return H;
-    }
-    public void putH(double h) {
-        H = h;
-        imb = W / (H * H);
-    }
-    public static double takeImt() {
-        return imb;
-    }
-    public static String Result() {
-        String  string = null;
-        if (imb >=18.5 & imb <25) {
-            string ="Norm";
-        }
-        if (imb >=25 & imb <30) {
-            string ="Warning! ";
-        }
-        if (imb >=30) {
-            string ="Fat";
-        }
-        if (imb <18.5) {
-            string ="Deficit";
-        }
-        return string;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter your weight in kilograms: ");
+        double weight = scanner.nextDouble();
+
+        System.out.println("Enter your height in meters: ");
+        double height = scanner.nextDouble();
+
+        Human human = HumanFactory.getInstance(weight, height);
+
+        double bodyMassIndex = HumanUtil.getBodyMassIndex(human);
+        String analytics = HumanUtil.getAnalytics(human);
+        System.out.printf("Hey %s, your Body Mass index is: %.2f. And this is: %s", name, bodyMassIndex, analytics);
     }
 }
