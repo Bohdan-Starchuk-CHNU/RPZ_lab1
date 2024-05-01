@@ -1,3 +1,5 @@
+All refactored code placed in refactored package
+___
 # Code Review Issues
 
 1. The Java file contains two classes, which violates the standard practice of having one class per file.
